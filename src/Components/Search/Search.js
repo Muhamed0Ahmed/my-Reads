@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import * as BooksApi from "../../BooksApi/BooksApi";
-import Selected from "../Selected";
 import "./Search.css";
+import Book from "../Book";
 
 function Search(props) {
-  const { onchangeItemShelf } = props;
+  const {homeBooks, onchangeItemShelf } = props;
   const [searchInp, setSearchInp] = useState("");
 
   const [bookSearch, setBooksSearch] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
+  
 
   const handleSearchInput = (e) => {
     setSearchInp(e.target.value);
@@ -18,8 +19,10 @@ function Search(props) {
     } else {
       setShowSearch(true);
       BooksApi.search(e.target.value).then((data) => setBooksSearch(data));
+      console.log(bookSearch)
     }
   };
+  
 
   return (
     <div className="search-page">
@@ -48,30 +51,8 @@ function Search(props) {
         ) : (
           <div className="books">
             <ul>
-              {bookSearch.map((book) => (
-                <li key={`${book.id}`} style={{ display: "inline-block" }}>
-                  <div className="book">
-                    <div className="book-top">
-                      <div
-                        className="book-cover"
-                        style={{
-                          width: 140,
-                          height: 193,
-                          backgroundImage: `url(${book.imageLinks.thumbnail})`,
-                        }}
-                      ></div>
-                      <div className="book-shelf-changer">
-                        <Selected
-                          item={book}
-                          shelf="none"
-                          onchangeItemShelf={onchangeItemShelf}
-                        />
-                      </div>
-                    </div>
-                    <div className="book-title">{book.title}</div>
-                    <div className="book-authors">{book.authors}</div>
-                  </div>
-                </li>
+              {bookSearch.map((book) => ( 
+                <Book key={book.id} homeBooks={homeBooks} onchangeItemShelf={onchangeItemShelf} book={book}/>
               ))}
             </ul>
           </div>

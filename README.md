@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+
+
+
+# Getting Started with Create React App 
+    => "npm install" or "yarn install"  for install all dependencies 
+    => "npm start    for start the project 
+
+
+# Describe this project 
+    app contain two pages 
+        => Home page     
+            ==> view all book shelf (current reading, Want to Read and reads )
+            ==> can chang shelf for any book directly
+            ==> its use BookShelf Component for view shelf ( title and Books)
+            ==> Home page contain a Link for take a user to Search page 
+
+        => Search page 
+            ==> its contain a link for take a user to Home page
+            ==> its contain a input field help user for search any book and view all books
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

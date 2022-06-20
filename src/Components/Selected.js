@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
 
 function Selected(props) {
-    const {item, shelf , onchangeItemShelf} = props;
-    const options =[
-        {value:"currentlyReading", text:"Currently Reading"},
-        {value:"wantToRead", text:"Want to Read"},
-        {value:"read", text:"Read"},
-        {value:"none", text:"None"},
+  const { item, shelf, onchangeItemShelf } = props;
+  const options = [
+    { value: "currentlyReading", text: "Currently Reading" },
+    { value: "wantToRead", text: "Want to Read" },
+    { value: "read", text: "Read" },
+    { value: "none", text: "None" },
+  ];
+  const [selectOption, setSelectOption] = useState(shelf);
+  const handleSelect = (e) => {
+    setSelectOption(e.target.value);
+    onchangeItemShelf(item, e.target.value);
+  };
 
-    ]
-    const [selectOption , setSelectOption]= useState(shelf);
-    const handleSelect = (e) =>{
-        // console.log(e.target.value);
-        setSelectOption(e.target.value);
-        onchangeItemShelf(item, e.target.value);
-      }
-    //   useEffect(() => {
-    //     onchangeItemShelf(item.id, selectOption);
-    //   },[selectOption])
   return (
     <select value={selectOption} onChange={handleSelect}>
       <option value="move" disabled>
         Move to...
       </option>
-     {options.map((option, idx) => 
-     <option key={idx} value={option.value}>{option.text}</option>)}
+      {options.map((option, idx) => (
+        <option key={idx} value={option.value}>
+          {option.text}
+        </option>
+      ))}
     </select>
   );
 }

@@ -9,38 +9,35 @@ const headers = {
   Authorization: token,
 };
 
-export const getAll = () => 
-  fetch(`${api}books`,{headers})
-  .then((res) => res.json())
-  .then((data) => data.books);
-
-  export const getBookId = (id) => {
-    fetch(`${api}books/:${id}`, {headers})
+export const getAll = () =>
+  fetch(`${api}books`, { headers })
     .then((res) => res.json())
-  .then((data) => data);
+    .then((data) => data.books);
 
-  }
+export const getBookId = (id) => {
+  fetch(`${api}books/:${id}`, { headers })
+    .then((res) => res.json())
+    .then((data) => data);
+};
 
-  export const update = (book, shelf) =>
+export const update = (book, shelf) =>
   fetch(`${api}books/${book.id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
       ...headers,
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
+    body: JSON.stringify({ shelf }),
+  }).then((res) => res.json());
 
-
-  export const search = (query) =>
+export const search = (query) =>
   fetch(`${api}search`, {
-    method: 'POST',
+    method: "POST",
     headers: {
       ...headers,
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body:JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books);
-    
-  
+    body: JSON.stringify({ query }),
+  })
+    .then((res) => res.json())
+    .then((data) => data.books);
